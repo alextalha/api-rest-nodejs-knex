@@ -2,4 +2,5 @@ node_modules/
 dist/
 note.md
 tmp/app.db
-db/*
+db/* 
+.env
