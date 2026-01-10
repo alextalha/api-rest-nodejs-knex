@@ -5,6 +5,11 @@ import { randomUUID } from 'node:crypto'
 import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
 export async function transactionsRoutes(app: FastifyInstance) {
+  // Hook Global para logar todas as requisições feitas a essa rota
+  app.addHook('preHandler', async (request) => {
+    console.error(`[${request.method}] ${request.url}`)
+  })
+
   app.get('/', { preHandler: [checkSessionIdExists] }, async (request) => {
     const { sessionId } = request.cookies
 
